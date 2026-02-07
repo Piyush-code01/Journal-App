@@ -9,7 +9,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
+import com.google.firebase.firestore.firestore
 import com.myandroid.journalapp.databinding.ActivitySignUpactivityBinding
 
 
@@ -29,37 +31,39 @@ class sign_upactivity : AppCompatActivity() {
             insets
         }
         auth = Firebase.auth
+        val db = Firebase.firestore
 
-
-
-
-
-
-        binding2.btsignup.setOnClickListener {
-            val email= binding2.etemail.text.toString()
-            val password= binding2.etpassword.text.toString()
-
-
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d("TAGY", "createUserWithEmail:success")
-                        val user = auth.currentUser
-                        updateUI(user)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w("TAGY", "createUserWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext,
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                        updateUI(null)
-                    }
-                }
+        binding2.btsignup.setOnClickListener() {
+           createuser()
         }
     }
+
+    fun createuser() {
+        val email= binding2.etemail.text.toString()
+        val password= binding2.etpassword.text.toString()
+
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("TAGY", "createUserWithEmail:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("TAGY", "createUserWithEmail:failure", task.exception)
+                    Toast.makeText(
+                        baseContext,
+                        "Authentication failed.",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                    updateUI(null)
+                }
+            }
+    }
+
+    private fun updateUI(user: FirebaseUser?) {}
 
 
     public override fun onStart() {
@@ -71,4 +75,10 @@ class sign_upactivity : AppCompatActivity() {
         }
 
     }
+
+    fun reload() {
+        TODO("Not yet implemented")
+    }
 }
+
+

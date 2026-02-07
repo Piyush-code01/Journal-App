@@ -36,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    buildFeatures {
+        viewBinding=true
+    }
 }
 
 dependencies {
@@ -55,6 +58,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     //firestore
     implementation("com.google.firebase:firebase-firestore")
+
+    //authentication
+    implementation("com.google.firebase:firebase-auth")
 
 
 }

@@ -16,16 +16,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:id="@+id/linearlayout1">
 
         <TextView
+            android:id="@+id/tvjournalitemusername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="15"
-            android:text="Title" />
+            android:text="Title"
+            android:textSize="20sp"/>
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/ivjournalitemsharebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -40,15 +44,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp"
+        android:id="@+id/linearlayout2">
+        
+        <ImageView
+            android:id="@+id/ivjournalimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            />
 
         <TextView
+            android:id="@+id/tvjournaltitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
             android:textSize="20sp"
             android:layout_margin="5dp"/>
         <TextView
+            android:id="@+id/tvjournaldescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description.."
@@ -56,6 +70,7 @@
             />
 
         <TextView
+            android:id="@+id/tvjournalcreationtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Date Created:"

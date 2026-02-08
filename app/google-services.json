@@ -1,22 +1,21 @@
 {
   "project_info": {
-    "project_number": "748694118787",
-    "firebase_url": "https://fir-kotlin-d1f4c-default-rtdb.firebaseio.com",
-    "project_id": "fir-kotlin-d1f4c",
-    "storage_bucket": "fir-kotlin-d1f4c.firebasestorage.app"
+    "project_number": "868037386627",
+    "project_id": "journalkotlin-ffebb",
+    "storage_bucket": "journalkotlin-ffebb.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:748694118787:android:d2dfbf6d8a56311a0bd6b6",
+        "mobilesdk_app_id": "1:868037386627:android:dc50ab9c3d78b960f316b6",
         "android_client_info": {
-          "package_name": "com.myandroid.firebaseapp"
+          "package_name": "com.myandroid.journalapp"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDtMt2eP88F3QcxYekpPUzmdBya9_l-U2Y"
+          "current_key": "AIzaSyCAiRlh0mHiROi9EBMENH0wJVkTV1PyY04"
         }
       ],
       "services": {

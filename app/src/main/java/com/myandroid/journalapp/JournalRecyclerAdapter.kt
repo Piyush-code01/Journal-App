@@ -16,10 +16,10 @@ class JournalRecyclerAdapter (val context : Context,var journallist:List<Journal
         parent: ViewGroup,
         viewType: Int
     ): MyViewholder {
-      val binding3= JournalitemBinding.inflate(LayoutInflater.from(parent.context),parent,false
+       binding= JournalitemBinding.inflate(LayoutInflater.from(parent.context),parent,false
       )
 
-        return MyViewholder(binding3)
+        return MyViewholder(binding)
     }
 
     override fun onBindViewHolder(

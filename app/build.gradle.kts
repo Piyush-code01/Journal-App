@@ -54,14 +54,18 @@ dependencies {
 
     //firebase
 
-    implementation(platform("com.google.firebase:firebase-bom:34.8.0"))
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
     //firestore
-    implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.firebase.firestore)
     implementation("com.google.firebase:firebase-analytics")
 
     //authentication
-    implementation("com.google.firebase:firebase-auth")
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.storage)
+
+
+    implementation("com.cloudinary:cloudinary-android:3.1.2")
 
 
 }

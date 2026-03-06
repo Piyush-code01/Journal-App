@@ -11,7 +11,8 @@ import com.myandroid.journalapp.databinding.ActivityMainBinding
 import com.myandroid.journalapp.databinding.ActivitySignUpactivityBinding
 
 
-class MainActivity : AppCompatActivity() {
+class
+MainActivity : AppCompatActivity() {
 
 
     lateinit var binding1 : ActivityMainBinding

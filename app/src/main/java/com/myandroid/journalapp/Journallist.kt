@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,7 +31,7 @@ class Journallist : AppCompatActivity() {
     lateinit var storagereference: StorageReference
     var collectionsreference: CollectionReference=db.collection("Journal")
     lateinit var noPostTextView: TextView
-    lateinit var journalList:List<Journal>
+    lateinit var journalList:MutableList<Journal>
     lateinit var adapter: JournalRecyclerAdapter
 
 
@@ -81,6 +83,38 @@ class Journallist : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onStart() {
+
+       collectionsreference.whereEqualTo("userId", Journaluser.instance?.userId).
+       get()
+           .addOnSuccessListener {
+
+               if (!it.isEmpty){
+
+                   it.forEach {
+                       var journal =it.toObject(Journal::class.java)
+
+                       journalList.add(journal)
+                   }
+                   adapter= JournalRecyclerAdapter(this,journalList)
+                   binding.rvjournal.adapter=adapter
+                   adapter.notifyDataSetChanged()
+               }
+
+               else{
+                   binding.tvnopost.visibility=View.VISIBLE
+
+               }
+
+           }.addOnFailureListener {
+               Toast.makeText(this,"Oops!,, something went wrong ", Toast.LENGTH_SHORT).show()
+           }
+
+
+
+        super.onStart()
     }
 
 }

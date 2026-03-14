@@ -29,7 +29,7 @@ class Journallist : AppCompatActivity() {
     var db= FirebaseFirestore.getInstance()
     lateinit var user: FirebaseUser
     lateinit var storagereference: StorageReference
-    var collectionsreference: CollectionReference=db.collection("Journal")
+    var collectionsreference: CollectionReference=db.collection("Journals")
     lateinit var noPostTextView: TextView
     lateinit var journalList:MutableList<Journal>
     lateinit var adapter: JournalRecyclerAdapter

@@ -6,6 +6,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 import com.myandroid.journalapp.databinding.ActivityMainBinding
 import com.myandroid.journalapp.databinding.ActivitySignUpactivityBinding
@@ -16,6 +19,7 @@ MainActivity : AppCompatActivity() {
 
 
     lateinit var binding1 : ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +37,30 @@ MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding1.loginbutton.setOnClickListener (){
+            LoginWithEmailPassword(
+                binding1.emailtext.text.toString().trim(),
+                binding1.editText.text.toString().trim()
+            )
+        }
+
+        auth= Firebase.auth
+    }
+
+    private fun LoginWithEmailPassword(email:String,Password: String){
+
+    }
 
 
+    override fun onStart() {
+        super.onStart()
+
+        val currentuser=auth.currentUser!!
+        if(currentuser!=null){
+            var intent = Intent(this,Journallist::class.java)
+            startActivity(intent)
+
+        }
     }
 
 

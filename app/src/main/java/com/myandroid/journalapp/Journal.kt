@@ -1,13 +1,14 @@
 package com.myandroid.journalapp
 
-import java.sql.Timestamp
+import com.google.firebase.Timestamp
+
 
 data class Journal (
-     val title:String="",
-     val thoughts:String="",
-     val imageUrl:Int,
-     val userId:String="",
-     val TimeAdded: Timestamp?=null,
-     val userName: String=""
+    val title:String="",
+    val thoughts:String="",
+    val imageUrl:String ="",
+    val userId:String="",
+    val timeAdded: Timestamp?=null,
+    val userName: String=""
 
 )

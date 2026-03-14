@@ -54,7 +54,11 @@ MainActivity : AppCompatActivity() {
            auth .signInWithEmailAndPassword(email,Password).addOnCompleteListener(this) {
                 task ->
                if(task.isSuccessful){
-                   val user=auth
+                  var journal: Journaluser= Journaluser.instance!!
+
+                   journal.userId =auth.currentUser?.uid
+                   journal.username=auth.currentUser?.displayName
+
                    gotoJournalList()
                }
                else{

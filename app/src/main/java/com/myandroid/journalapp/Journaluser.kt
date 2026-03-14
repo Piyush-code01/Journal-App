@@ -5,8 +5,8 @@ import com.cloudinary.android.MediaManager
 
 class Journaluser: Application() {
 
-    val username:String? = null
-    val userId:String?=null
+    var username:String? = null
+    var userId:String?=null
 
 companion object{
     var instance: Journaluser?= null

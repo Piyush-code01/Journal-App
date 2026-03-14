@@ -14,6 +14,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
@@ -89,20 +90,30 @@ class Journallist : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        journalList.clear()
+       // journalList.clear()
 
-       collectionsreference.whereEqualTo("userId", Journaluser.instance?.userId).
-       get()
-           .addOnSuccessListener {
+        collectionsreference.whereEqualTo("userId", user.uid)
+            .get()
+            .addOnSuccessListener { queryDocumentSnapshots ->
+                if (!queryDocumentSnapshots.isEmpty) {
+                    binding.tvnopost.visibility = View.INVISIBLE
 
-               if (!it.isEmpty){
-                   binding.tvnopost.visibility=View.INVISIBLE
+                    for (document in queryDocumentSnapshots) {
+                        var journal  =Journal(
+                            document.data.get("title").toString(),
+                            document.data.get("thoughts").toString(),
+                            document.data.get("imageUrl").toString(),
+                            document.data.get("userId").toString(),
+                            document.data.get("timeAdded") as Timestamp,
+                            document.data.get("userName").toString(),
 
-                   it.forEach {
-                       var journal =it.toObject(Journal::class.java)
+                        )
+                        journalList.add(journal)
 
-                       journalList.add(journal)
-                   }
+
+
+
+                    }
                    adapter= JournalRecyclerAdapter(this,journalList)
                    binding.rvjournal.adapter=adapter
                    adapter.notifyDataSetChanged()

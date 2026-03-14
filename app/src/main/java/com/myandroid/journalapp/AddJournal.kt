@@ -16,8 +16,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.myandroid.journalapp.databinding.ActivityAddJournalBinding
 
@@ -52,7 +54,7 @@ class AddJournal : AppCompatActivity() {
             insets
         }
         
-        auth= FirebaseAuth.getInstance()
+        auth= Firebase.auth
 
         //imagepicker
         imagePickerLauncher=registerForActivityResult(ActivityResultContracts.GetContent()){
@@ -75,8 +77,8 @@ class AddJournal : AppCompatActivity() {
 
             if(Journaluser.instance!= null){
 
-                currentuserid=Journaluser.instance!!.userId.toString()
-                currentusername= Journaluser.instance!!.username.toString()
+                currentuserid=auth.currentUser?.uid.toString()
+                currentusername=auth.currentUser?.displayName.toString()
 
                 TitleTextview.text=currentusername
                 savebutton.setOnClickListener(){

@@ -45,6 +45,7 @@ class Journallist : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        setSupportActionBar(binding.toolbar)
 
 
         //firebase auth
@@ -92,6 +93,7 @@ class Journallist : AppCompatActivity() {
            .addOnSuccessListener {
 
                if (!it.isEmpty){
+                   binding.tvnopost.visibility=View.INVISIBLE
 
                    it.forEach {
                        var journal =it.toObject(Journal::class.java)

@@ -2,6 +2,7 @@ package com.myandroid.journalapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,6 +24,7 @@ MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth= Firebase.auth
         enableEdgeToEdge()
         binding1= ActivityMainBinding.inflate(layoutInflater)
 
@@ -32,6 +34,7 @@ MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         binding1.button.setOnClickListener {
             val intent = Intent(this, sign_upactivity::class.java)
             startActivity(intent)
@@ -44,25 +47,37 @@ MainActivity : AppCompatActivity() {
             )
         }
 
-        auth= Firebase.auth
+
     }
 
     private fun LoginWithEmailPassword(email:String,Password: String){
-
+           auth .signInWithEmailAndPassword(email,Password).addOnCompleteListener(this) {
+                task ->
+               if(task.isSuccessful){
+                   val user=auth
+                   gotoJournalList()
+               }
+               else{
+                   Toast.makeText(this,"Authentication Failed!!",Toast.LENGTH_LONG).show()
+               }
+           }
     }
 
 
     override fun onStart() {
         super.onStart()
 
-        val currentuser=auth.currentUser!!
+        val currentuser=auth.currentUser
         if(currentuser!=null){
-            var intent = Intent(this,Journallist::class.java)
-            startActivity(intent)
+           gotoJournalList()
 
         }
     }
-
+    fun gotoJournalList(){
+        var intent = Intent(this, Journallist::class.java)
+        startActivity(intent)
+        finish()
+    }
 
 
 

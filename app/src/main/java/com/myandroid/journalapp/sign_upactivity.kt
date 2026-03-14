@@ -1,5 +1,6 @@
 package com.myandroid.journalapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -39,8 +40,9 @@ class sign_upactivity : AppCompatActivity() {
     }
 
     fun createuser() {
-        val email= binding2.etemail.text.toString()
-        val password= binding2.etpassword.text.toString()
+        val email= binding2.etemail.text.toString().trim()
+        val password= binding2.etpassword.text.toString().trim()
+        val username= binding2.etusername.text.toString().trim()
 
 
         auth.createUserWithEmailAndPassword(email, password)
@@ -63,7 +65,12 @@ class sign_upactivity : AppCompatActivity() {
             }
     }
 
-    private fun updateUI(user: FirebaseUser?) {}
+    private fun updateUI(user: FirebaseUser?) {
+        var inte = Intent(this, Journallist::class.java)
+        startActivity(inte)
+        finish()
+
+    }
 
 
     public override fun onStart() {

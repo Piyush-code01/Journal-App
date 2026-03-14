@@ -8,6 +8,8 @@
     android:background="@drawable/login"
     tools:context=".MainActivity">
 
+
+
     <TextView
         android:id="@+id/titletext"
         android:layout_width="wrap_content"

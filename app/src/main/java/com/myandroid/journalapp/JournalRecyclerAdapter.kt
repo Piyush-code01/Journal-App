@@ -40,9 +40,24 @@ class JournalRecyclerAdapter (val context : Context,var journallist:List<Journal
 
              binding.tvjournaltitle.text=journal.title
             binding.tvjournalitemusername.text=journal.userName
-             binding.tvjournalcreationtime.text=journal.TimeAdded.toString()
-             binding.ivjournalimage.setBackgroundResource(journal.imageUrl)
+             binding.tvjournalcreationtime.text = journal.timeAdded?.toDate()?.toString() ?: ""
              binding.tvjournaldescription.text=journal.thoughts
+
+             // Manual Image Loading (URL to Bitmap)
+             val executor = java.util.concurrent.Executors.newSingleThreadExecutor()
+             val handler = android.os.Handler(android.os.Looper.getMainLooper())
+             executor.execute {
+                 try {
+                     val inputStream = java.net.URL(journal.imageUrl).openStream()
+                     val bitmap = android.graphics.BitmapFactory.decodeStream(inputStream)
+                     handler.post {
+                         binding.ivjournalimage.setImageBitmap(bitmap)
+                     }
+                 } catch (e: Exception) {
+                     e.printStackTrace()
+                 }
+             }
+
 
          }
    }

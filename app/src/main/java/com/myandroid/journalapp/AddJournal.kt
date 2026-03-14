@@ -119,9 +119,9 @@ class AddJournal : AppCompatActivity() {
                    ) {
                        //url for the image
 
-                       val imageUrl= resultData!!["url"] as String?
+                       var imageUrl= resultData?.get("secure_url") as? String
 
-                       saveToFirestore(title, thoughts, imageUrl!!)
+                       saveToFirestore(title, thoughts, imageUrl?:"")
                    }
 
 

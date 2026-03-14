@@ -1,11 +1,14 @@
 package com.myandroid.journalapp
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.myandroid.journalapp.databinding.JournalitemBinding
+import java.util.concurrent.Executors
 
 class JournalRecyclerAdapter (val context : Context,var journallist:List<Journal>):
     RecyclerView.Adapter<JournalRecyclerAdapter.MyViewholder>() {
@@ -36,6 +39,9 @@ class JournalRecyclerAdapter (val context : Context,var journallist:List<Journal
 
 
      class MyViewholder(val binding: JournalitemBinding) : RecyclerView.ViewHolder(binding.root){
+
+         private val executor = Executors.newSingleThreadExecutor()
+         private val handler = Handler(Looper.getMainLooper())
          fun bind(journal: Journal){
 
              binding.tvjournaltitle.text=journal.title
@@ -44,17 +50,24 @@ class JournalRecyclerAdapter (val context : Context,var journallist:List<Journal
              binding.tvjournaldescription.text=journal.thoughts
 
              // Manual Image Loading (URL to Bitmap)
-             val executor = java.util.concurrent.Executors.newSingleThreadExecutor()
-             val handler = android.os.Handler(android.os.Looper.getMainLooper())
-             executor.execute {
-                 try {
-                     val inputStream = java.net.URL(journal.imageUrl).openStream()
-                     val bitmap = android.graphics.BitmapFactory.decodeStream(inputStream)
-                     handler.post {
-                         binding.ivjournalimage.setImageBitmap(bitmap)
+//             val executor = java.util.concurrent.Executors.newSingleThreadExecutor()
+//             val handler = android.os.Handler(android.os.Looper.getMainLooper())
+
+             binding.ivjournalimage.setImageBitmap(null)
+
+             // 2. Load Image safely
+             val imageUrl = journal.imageUrl
+             if(imageUrl.isNotEmpty()){
+                 executor.execute {
+                     try {
+                         val inputStream = java.net.URL(journal.imageUrl).openStream()
+                         val bitmap = android.graphics.BitmapFactory.decodeStream(inputStream)
+                         handler.post {
+                             binding.ivjournalimage.setImageBitmap(bitmap)
+                         }
+                     } catch (e: Exception) {
+                         e.printStackTrace()
                      }
-                 } catch (e: Exception) {
-                     e.printStackTrace()
                  }
              }
 

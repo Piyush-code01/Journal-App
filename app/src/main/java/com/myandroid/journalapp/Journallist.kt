@@ -35,6 +35,7 @@ class Journallist : AppCompatActivity() {
     lateinit var adapter: JournalRecyclerAdapter
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -87,6 +88,8 @@ class Journallist : AppCompatActivity() {
     }
 
     override fun onStart() {
+        super.onStart()
+        journalList.clear()
 
        collectionsreference.whereEqualTo("userId", Journaluser.instance?.userId).
        get()
@@ -107,6 +110,7 @@ class Journallist : AppCompatActivity() {
 
                else{
                    binding.tvnopost.visibility=View.VISIBLE
+                   binding.rvjournal.adapter = null
 
                }
 
@@ -116,7 +120,7 @@ class Journallist : AppCompatActivity() {
 
 
 
-        super.onStart()
+
     }
 
 }

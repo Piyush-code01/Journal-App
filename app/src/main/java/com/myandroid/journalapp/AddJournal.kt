@@ -100,7 +100,7 @@ class AddJournal : AppCompatActivity() {
            MediaManager.get().upload(imageuri).unsigned("Journalapp")
                .callback(object: UploadCallback{
                    override fun onStart(requestId: String?) {
-                       TODO("Not yet implemented")
+
                    }
 
                    override fun onProgress(
@@ -108,7 +108,7 @@ class AddJournal : AppCompatActivity() {
                        bytes: Long,
                        totalBytes: Long
                    ) {
-                       TODO("Not yet implemented")
+
                    }
 
                    override fun onSuccess(
@@ -136,7 +136,7 @@ class AddJournal : AppCompatActivity() {
                        requestId: String?,
                        error: ErrorInfo?
                    ) {
-                       TODO("Not yet implemented")
+
                    }
 
                }).dispatch()

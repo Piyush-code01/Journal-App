@@ -6,10 +6,7 @@
 
     android:layout_margin="5dp"
     app:cardCornerRadius="15dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+
 
 
     <LinearLayout
@@ -44,14 +41,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
+
         android:id="@+id/linearlayout2">
         
         <ImageView
             android:id="@+id/ivjournalimage"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="fitXY"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
             />
 
         <TextView
@@ -59,13 +56,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textSize="20sp"
+            android:textSize="25sp"
             android:layout_margin="5dp"/>
         <TextView
             android:id="@+id/tvjournaldescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Description.."
+            android:textSize="20sp"
             android:layout_margin="5dp"
             />
 
@@ -81,6 +79,6 @@
 
     </LinearLayout>
 
-</LinearLayout>
+
 
 </androidx.cardview.widget.CardView>
